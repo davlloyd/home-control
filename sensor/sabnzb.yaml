@@ -1,0 +1,11 @@
+  # Downloader
+  - platform: sabnzbd
+    host: !secret sabnzb_host
+    api_key: !secret sabnzb_api_key
+    monitored_variables:
+    - 'current_status'
+    #- 'speed'
+    #- 'queue_size'
+    #- 'queue_remaining'
+    #- 'disk_size'
+    #- 'disk_free'

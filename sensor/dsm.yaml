@@ -1,0 +1,9 @@
+  # NAS Server
+  #- platform: synologydsm
+  #  host: !secret dsm_host
+  #  username: !secret dsm_username
+  #  password: !secret dsm_password
+  #  monitored_conditions:
+  #    - cpu_total_load
+  #    - memory_real_usage
+  #    - network_up
