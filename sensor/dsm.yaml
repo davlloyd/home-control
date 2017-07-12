@@ -1,6 +1,6 @@
   # NAS Server
   #- platform: synologydsm
-  #  host: !secret dsm_host
+  #  host: 192.168.0.10
   #  username: !secret dsm_username
   #  password: !secret dsm_password
   #  monitored_conditions:

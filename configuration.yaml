@@ -62,7 +62,7 @@ camera:
 
 device_tracker:
   - platform: unifi
-    host: !secret unifi_host
+    host: 192.168.0.9
     username: !secret unifi_username
     password: !secret unifi_password
     verify_ssl: false 
