@@ -1,6 +1,0 @@
-zwave._:
-  ignored: false
-  polling_intensity: 1
-zwave.front_sensor:
-  ignored: false
-  polling_intensity: 0
