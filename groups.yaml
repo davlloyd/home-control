@@ -1,0 +1,135 @@
+default_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+      - group.time
+      - group.family
+      - group.climate
+      - group.upstairsbeds
+      - group.downstairs
+monitors:
+    name: Monitors
+    view: yes
+    icon: mdi:alarm-bell
+    entities:
+      - group.cameras
+      - group.alarms
+      - group.detectors
+time:
+    name: Time
+    view: no
+    entities:
+      - sun.sun
+      - sensor.time
+      - sensor.entrance_sensor_luminance
+alarms:
+    name: House Alarms
+    view: no
+    entities:
+      - sensor.entrance_sensor_burglar
+      - sensor.entrance_sensor_alarm_level
+      - sensor.entrance_sensor_alarm_type
+      - binary_sensor.entrance_sensor_sensor
+detectors:
+    name: House Detectors
+    view: no
+    entities:
+      - sensor.dining_room_nest_protect_smoke_status
+      - sensor.dining_room_nest_protect_co_status
+cameras:
+    name: Cameras
+    view: no
+    entities:
+      - camera.camera1
+upstairsbeds:
+    name: Upstairs Bedrooms
+    view: no
+    entities:
+      - sensor.lizard_lights_current
+      - sensor.lizard_lights_energy
+#      - sensor.lizard_lights_power
+#      - sensor.lizard_lights_voltage
+      - switch.lizard_lights_switch
+downstairs:
+    name: Downstairs
+    view: no
+    entities:
+#      - sensor.downstairs_lights_voltage
+#      - sensor.downstairs_lights_power
+      - sensor.downstairs_lights_energy
+      - sensor.downstairs_lights_current
+      - switch.downstairs_lights_switch
+      - remote.downstairs
+climate:
+    name: Climate
+    view: no
+    icon: mdi:weather-sunny
+    entities:
+      - sensor.yr_symbol
+      - sensor.yr_temperature
+      - sensor.yr_wind_direction
+      - sensor.yr_wind_speed
+      - sensor.entrance_sensor_temperature
+      - sensor.entrance_sensor_relative_humidity
+      - sensor.entrance_sensor_ultraviolet
+family:
+    name: The Lloyds
+    view: no
+    icon: mdi:human-male-female
+    entities:
+      - device_tracker.debsiphone
+      - device_tracker.davidsiphone
+      - device_tracker.joeysiphone
+      - device_tracker.ellanisiphone
+loungemedia:
+     name: Lounge Media
+     view: yes
+     icon: mdi:theater
+     entities:
+       - media_player.lounge_tv
+       - media_player.kodi_lounge
+       - media_player.lounge_avr
+       - media_player.lounge_music
+       - remote.lounge
+music:
+     name: Music Players
+     view: yes
+     icon: mdi:radio
+     entities:
+       - media_player.lounge_music
+       - media_player.office_music_
+       - media_player.backroom_music
+sensors:
+    name: Sensors
+    view: yes
+    icon: mdi:radioactive
+    entities:
+      - binary_sensor.dining_room_nest_protect_online
+      - binary_sensor.entrance_sensor_sensor
+      - zwave.entrance_sensor
+      - zwave.lizard_lights
+      - zwave.Downstairs_lights
+      - zwave.zwave_stick
+
+automations:
+    name: Automations
+    view: yes
+    icon: mdi:react
+    entities:
+      - group.maintenance
+      - group.lizard
+
+maintenance:
+    name: Maintenance Tasks
+    view: no
+    entities:
+      - automation.zwave_soft_reset
+      - automation.zwave_heal
+
+lizard:
+    name: Lizard Care
+    view: no
+    entities:
+      - automation.turn_off_lizards_light
+      - automation.turn_on_lizards_light
+

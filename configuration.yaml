@@ -12,7 +12,7 @@ homeassistant:
   time_zone: Australia/Sydney
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -24,19 +24,11 @@ config:
 ffmpeg:
 
 http:
-  # Uncomment this to add a password (recommended!)
   api_password: !secret api_password
-  # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: example.duckdns.org:8123
+  # base_url: home-control.home.local:8123
 
 # Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
 
 # Discover some devices automatically
 discovery:
@@ -62,7 +54,7 @@ camera:
 
 device_tracker:
   - platform: unifi
-    host: 192.168.0.9
+    host: !secret unifi_host
     username: !secret unifi_username
     password: !secret unifi_password
     verify_ssl: false 
@@ -70,15 +62,22 @@ device_tracker:
 ifttt:
   key: !secret ifttt_key
 
+zwave:
+  usb_path: /dev/ttyACM0
+
+nest:
+  client_id: !secret nest_id
+  client_secret: !secret nest_secret
+
 media_player:
 # Lounge TV
   - platform: braviatv
-    host: 192.168.0.123
+    host: 192.168.0.88
     name: Lounge TV
 # Music Players
   - platform: squeezebox
     host: 192.168.0.10
-    port: 9002
+    port: 9009
 # Lounge Kodi Player
   - platform: kodi
     host: 192.168.0.149
@@ -88,9 +87,19 @@ media_player:
     host: 192.168.0.148
     name: Lounge AVR
     show_all_sources: False
-    zones:
-      - zone: Zone2
-        name: Deck AVR
+#    zones:
+#      - zone: Zone2
+#        name: Deck AVR
+
+remote:
+  - platform: harmony
+    name: Lounge
+    host: 192.168.0.156
+    activity: Watch Smart TV
+  - platform: harmony
+    name: Downstairs
+    host: 192.168.0.131
+    activity: Watch Apple TV 
 
 notify:
   - name: gmail
@@ -111,7 +120,7 @@ notify:
 tts:
   platform: google
 
-group: !include_dir_merge_list groups
-automation: !include_dir_merge_list automations
+group: !include groups.yaml
+automation: !include automations.yaml
 sensor: !include_dir_merge_list sensor
 

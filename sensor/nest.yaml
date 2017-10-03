@@ -1,0 +1,6 @@
+# Monitor Nest protect devices
+- platform: nest
+  monitored_conditions:
+  - 'co_status'
+  - 'smoke_status'
+

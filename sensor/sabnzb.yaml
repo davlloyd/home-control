@@ -1,6 +1,6 @@
   # Downloader
   - platform: sabnzbd
-    host: 192.168.20.10
+    host: !secret sabnzb_host
     api_key: !secret sabnzb_api_key
     monitored_variables:
     - 'current_status'

@@ -4,9 +4,9 @@
       - temperature
       - symbol
       #- precipitation
-      #- windSpeed
+      - windSpeed
       #- pressure
-      #- windDirection
+      - windDirection
       #- humidity
       #- fog
       #- cloudiness
