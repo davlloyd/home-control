@@ -91,6 +91,9 @@ loungemedia:
        - media_player.lounge_avr
        - media_player.lounge_music
        - remote.lounge
+       - media_player.atvlounge
+       - remote.atvlounge
+
 music:
      name: Music Players
      view: yes
@@ -118,6 +121,7 @@ automations:
     entities:
       - group.maintenance
       - group.lizard
+      - group.alerts
 
 maintenance:
     name: Maintenance Tasks
@@ -133,3 +137,11 @@ lizard:
       - automation.turn_off_lizards_light
       - automation.turn_on_lizards_light
 
+alerts:
+    name: House Alerts
+    view: no
+    entities:
+      - automation.motion_detected_empty_house
+      - automation.co_detection
+      - automation.smoke_detection
+ 

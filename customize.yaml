@@ -1,2 +1,4 @@
 sensor.dining_room_nest_protect_battery_health:
   hidden: true
+media_player.apple_tv: {}
+remote.apple_tv: {}

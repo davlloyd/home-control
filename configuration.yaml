@@ -91,6 +91,16 @@ media_player:
 #      - zone: Zone2
 #        name: Deck AVR
 
+apple_tv:
+  - host: 192.168.0.144
+    name: AppleTV Downstairs
+    login_id: 00000000-0c75-dfed-fb9b-e59f62334a07
+    credentials: 895712EFD67E2189:C72DD13DF77B99021EC372BABE
+  - host: 192.168.0.140
+    name: AppleTV Lounge
+    login_id: 00000000-0c75-dfed-fb9b-e59f62334a07
+    credentials: 4484CBB08AEB74A0:D70159FA6FADA0DE20049CD90D
+
 remote:
   - platform: harmony
     name: Lounge
