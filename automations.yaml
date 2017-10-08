@@ -39,7 +39,7 @@
   - data:
       message: Movement detected at house with no one home
       title: Home Burglar Alarm
-    service: notify.notify
+    service: notify.sms
 
 - id: '4'
   alias: CO Detection
@@ -54,7 +54,7 @@
   - data:
       message: High levels of CO detected, please check Nest service fro details
       subject: Home CO Levels Detected
-    service: notify.notify
+    service: notify.sms
 
 - id: '5'
   alias: Smoke Detection
@@ -69,7 +69,7 @@
   - data:
       message: High levels of smoke detected, please check Nest service fro details
       subject: Home smoke alarm triggered
-    service: notify.notify
+    service: notify.sms
 
 - id: '6'
   alias: Turn off downstairs light
