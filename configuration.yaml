@@ -32,6 +32,8 @@ updater:
 
 # Discover some devices automatically
 discovery:
+  ignore:
+
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -130,7 +132,18 @@ notify:
 tts:
   platform: google
 
+# Group structure file
 group: !include groups.yaml
+
+# Automations
 automation: !include automations.yaml
+
+# Merged directory for sensors
 sensor: !include_dir_merge_list sensor
+
+# customisation settings
+#customize: !include customize.yaml
+
+# Scripts
+script: !include scripts.yaml
 

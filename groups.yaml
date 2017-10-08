@@ -5,16 +5,17 @@ default_view:
       - group.time
       - group.family
       - group.climate
-      - group.upstairsbeds
-      - group.downstairs
+      - group.powercontrol
+
 monitors:
     name: Monitors
     view: yes
-    icon: mdi:alarm-bell
+    icon: mdi:cctv
     entities:
       - group.cameras
       - group.alarms
       - group.detectors
+
 time:
     name: Time
     view: no
@@ -22,6 +23,7 @@ time:
       - sun.sun
       - sensor.time
       - sensor.entrance_sensor_luminance
+
 alarms:
     name: House Alarms
     view: no
@@ -30,57 +32,47 @@ alarms:
       - sensor.entrance_sensor_alarm_level
       - sensor.entrance_sensor_alarm_type
       - binary_sensor.entrance_sensor_sensor
+
 detectors:
     name: House Detectors
     view: no
     entities:
       - sensor.dining_room_nest_protect_smoke_status
       - sensor.dining_room_nest_protect_co_status
+
 cameras:
     name: Cameras
     view: no
     entities:
-      - camera.camera1
-upstairsbeds:
-    name: Upstairs Bedrooms
+      - camera.front_entrance
+
+powercontrol:
+   name: Power Control
+   view: no
+   entities:
+     - switch.lizard_lights_switch
+     - switch.downstairs_lights_switch
+
+lizardswitch:
+    name: Lizard Heating Power
     view: no
     entities:
       - sensor.lizard_lights_current
       - sensor.lizard_lights_energy
-#      - sensor.lizard_lights_power
-#      - sensor.lizard_lights_voltage
+      - sensor.lizard_lights_power
+      - sensor.lizard_lights_voltage
       - switch.lizard_lights_switch
-downstairs:
-    name: Downstairs
+
+downstairsswitch:
+    name: Downstairs Power
     view: no
     entities:
-#      - sensor.downstairs_lights_voltage
-#      - sensor.downstairs_lights_power
-      - sensor.downstairs_lights_energy
       - sensor.downstairs_lights_current
+      - sensor.downstairs_lights_voltage
+      - sensor.downstairs_lights_power
+      - sensor.downstairs_lights_energy
       - switch.downstairs_lights_switch
-      - remote.downstairs
-climate:
-    name: Climate
-    view: no
-    icon: mdi:weather-sunny
-    entities:
-      - sensor.yr_symbol
-      - sensor.yr_temperature
-      - sensor.yr_wind_direction
-      - sensor.yr_wind_speed
-      - sensor.entrance_sensor_temperature
-      - sensor.entrance_sensor_relative_humidity
-      - sensor.entrance_sensor_ultraviolet
-family:
-    name: The Lloyds
-    view: no
-    icon: mdi:human-male-female
-    entities:
-      - device_tracker.debsiphone
-      - device_tracker.davidsiphone
-      - device_tracker.joeysiphone
-      - device_tracker.ellanisiphone
+
 loungemedia:
      name: Lounge Media
      view: yes
@@ -94,6 +86,47 @@ loungemedia:
        - media_player.atvlounge
        - remote.atvlounge
 
+downstairsmedia:
+     name: Downstairs Media
+     view: yes
+     icon: mdi:video
+     entities:
+      - media_player.atv_downstairs
+      - media_player.mibox3
+      - remote.downstairs
+      - remote.atv_downstairs
+
+poweruse:
+    name: Power Monitors
+    view: yes
+    icon: mdi:power-plug
+    entities:
+      - group.downstairsswitch
+      - group.lizardswitch
+
+climate:
+    name: Climate
+    view: no
+    icon: mdi:weather-sunny
+    entities:
+      #- sensor.yr_symbol
+      - sensor.yr_temperature
+      - sensor.yr_wind_direction
+      - sensor.yr_wind_speed
+      - sensor.entrance_sensor_temperature
+      - sensor.entrance_sensor_relative_humidity
+      - sensor.entrance_sensor_ultraviolet
+
+family:
+    name: The Lloyds
+    view: no
+    icon: mdi:human-male-female
+    entities:
+      - device_tracker.debsiphone
+      - device_tracker.davidsiphone
+      - device_tracker.joeysiphone
+      - device_tracker.ellanisiphone
+
 music:
      name: Music Players
      view: yes
@@ -102,6 +135,7 @@ music:
        - media_player.lounge_music
        - media_player.office_music_
        - media_player.backroom_music
+
 sensors:
     name: Sensors
     view: yes
@@ -111,7 +145,7 @@ sensors:
       - binary_sensor.entrance_sensor_sensor
       - zwave.entrance_sensor
       - zwave.lizard_lights
-      - zwave.Downstairs_lights
+      - zwave.downstairs_lights
       - zwave.zwave_stick
 
 automations:
@@ -119,29 +153,37 @@ automations:
     view: yes
     icon: mdi:react
     entities:
-      - group.maintenance
-      - group.lizard
-      - group.alerts
+#      - group.maintenanceauto
+      - group.lizardauto
+      - group.alertsauto
+      - group.lightsauto
 
-maintenance:
-    name: Maintenance Tasks
-    view: no
-    entities:
-      - automation.zwave_soft_reset
-      - automation.zwave_heal
+#maintenanceauto:
+#    name: Maintenance Tasks
+#    view: no
+#    entities:
+#      - automation.zwave_soft_reset
+#      - automation.zwave_heal
 
-lizard:
+lizardauto:
     name: Lizard Care
     view: no
     entities:
       - automation.turn_off_lizards_light
       - automation.turn_on_lizards_light
 
-alerts:
+alertsauto:
     name: House Alerts
     view: no
     entities:
       - automation.motion_detected_empty_house
       - automation.co_detection
       - automation.smoke_detection
- 
+
+lightsauto:
+    name: House Lighting
+    view: no
+    entities:
+      - automation.turn_off_downstairs_light
+      - automation.turn_on_downstairs_light 
+

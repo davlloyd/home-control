@@ -1,4 +1,21 @@
 sensor.dining_room_nest_protect_battery_health:
   hidden: true
+
 media_player.apple_tv: {}
+
 remote.apple_tv: {}
+
+sensor.yr_symbol:
+  friendly_name: Climate
+
+sensor.yr_temperature:
+  friendly_name: Outdoor Temperature
+
+sensor.yr_wind_direction:
+  friendly_name: Wind Direction
+
+sensor.yr_wind_speed:
+  friendly_name: Wind Speed
+
+device_tracker.7e0427d82305:
+  hidden: true

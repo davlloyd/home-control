@@ -1,18 +1,4 @@
-- alias: ZWave Soft Reset
-  trigger:
-    platform: time
-    at: '2:30:00'
-  action:
-    service: zwave.soft_reset
-
-- alias: Zwave Heal
-  trigger:
-    platform: time
-    at: '2:35:00'
-  action:
-    service: zwave.heal_network
-
-- action:
+- id: '1'
   alias: Turn off Lizards light
   initial_state: true
   hide_entity: false
@@ -20,10 +6,11 @@
   - event: sunset
     platform: sun
   action:
-    service: homeassistant.turn_off
+  - service: homeassistant.turn_off
     entity_id: switch.lizard_lights_switch
 
-- alias: Turn on Lizards light
+- id: '2'
+  alias: Turn on Lizards light
   initial_state: true
   hide_entity: false
   trigger:
@@ -31,48 +18,80 @@
     offset: '+1:00:00'
     platform: sun
   action:
-    service: homeassistant.turn_on
+  - service: homeassistant.turn_on
     entity_id: switch.lizard_lights_switch
 
-- action:
-  - alias: ''
-    data:
-      message: Movement detected at house with no one home
-      title: Home Burglar Alarm
-    service: notify.notify
+- id: '3'
   alias: Motion Detected Empty House
-  condition:
-  - condition: state
-    entity_id: group.family
-    state: not_home
-  id: '1507106489795'
+  initial_state: true
+  hide_entity: false
   trigger:
   - above: '0'
     entity_id: sensor.entrance_sensor_burglar
     platform: numeric_state
-
-- action:
-  - alias: ''
-    data:
-      message: Smoke has been detected at home. Check Nest service
-      subject: Home Smoke Alarm Triggered
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: not_home
+  action:
+  - data:
+      message: Movement detected at house with no one home
+      title: Home Burglar Alarm
     service: notify.notify
-  alias: Smoke Detection
-  condition: []
-  id: '1507107923967'
+
+- id: '4'
+  alias: CO Detection
+  initial_state: true
+  hide_entity: false
   trigger:
-  - entity_id: sensor.dining_room_nest_protect_smoke_status
-    from: Ok
+  - from: Ok
+    entity_id: sensor.dining_room_nest_protect_co_status
     platform: state
-- action:
+  condition: []
+  action:
   - data:
       message: High levels of CO detected, please check Nest service fro details
       subject: Home CO Levels Detected
     service: notify.notify
-  alias: CO Detection
-  condition: []
-  id: '1507108110696'
+
+- id: '5'
+  alias: Smoke Detection
+  initial_state: true
+  hide_entity: false
   trigger:
-  - entity_id: sensor.dining_room_nest_protect_co_status
-    from: Ok
+  - from: Ok
+    entity_id: sensor.dining_room_nest_protect_smoke_status
     platform: state
+  condition: []
+  action:
+  - data:
+      message: High levels of smoke detected, please check Nest service fro details
+      subject: Home smoke alarm triggered
+    service: notify.notify
+
+- id: '6'
+  alias: Turn off downstairs light
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - at: '21:30'
+    platform: time
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.downstairs_lights_switch
+
+- id: '7'
+  alias: Turn on Downstairs light
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - event: sunset
+    platform: sun
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.downstairs_lights_switch
+
+
+
