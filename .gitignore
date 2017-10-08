@@ -6,4 +6,12 @@ bravia.conf
 nest.conf
 certs/*
 .DS_Store
+*.pem
+*.db
+*.log
+*.sqlite
+*.xml
+*.txt
+tts
+deps
 

@@ -10,6 +10,8 @@ homeassistant:
   unit_system: metric
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: Australia/Sydney
+ # Customization file
+  customize: !include customize.yaml
 
 # Show links to resources in log and frontend
 #introduction:
@@ -126,7 +128,10 @@ notify:
     recipient:
       - !secret gmail_recipient
     sender_name: My Home Assistant
-
+  - name: sms
+    platform: clickatell
+    api_key: !secret clickatell_apikey
+    recipient: !secret clickatell_recipient
 
 # Text to speech
 tts:
