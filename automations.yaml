@@ -49,8 +49,10 @@
   - from: Ok
     entity_id: sensor.dining_room_nest_protect_co_status
     platform: state
+  - from: Ok
+    entity_id: sensor.hallway_nest_protect_co_status
+    platform: state
   condition: []
-  action:
   - data:
       message: High levels of CO detected, please check Nest service fro details
       subject: Home CO Levels Detected
@@ -63,6 +65,9 @@
   trigger:
   - from: Ok
     entity_id: sensor.dining_room_nest_protect_smoke_status
+    platform: state
+  - from: Ok
+    entity_id: sensor.hallway_nest_protect_smoke_status
     platform: state
   condition: []
   action:

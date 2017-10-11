@@ -39,6 +39,8 @@ detectors:
     entities:
       - sensor.dining_room_nest_protect_smoke_status
       - sensor.dining_room_nest_protect_co_status
+      - sensor.hallway_nest_protect_smoke_status
+      - sensor.hallway_nest_protect_co_status
 
 cameras:
     name: Cameras
@@ -142,6 +144,7 @@ sensors:
     icon: mdi:radioactive
     entities:
       - binary_sensor.dining_room_nest_protect_online
+      - binary_sensor.hallway_nest_protect_online
       - binary_sensor.entrance_sensor_sensor
       - zwave.entrance_sensor
       - zwave.lizard_lights
