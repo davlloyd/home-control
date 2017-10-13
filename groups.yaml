@@ -47,6 +47,7 @@ cameras:
     view: no
     entities:
       - camera.front_entrance
+      - switch.surveillance_mode
 
 powercontrol:
    name: Power Control
@@ -182,6 +183,8 @@ alertsauto:
       - automation.motion_detected_empty_house
       - automation.co_detection
       - automation.smoke_detection
+      - automation.switch_surveillance_to_away_mode
+      - automation.switch_surveillance_to_home_mode
 
 lightsauto:
     name: House Lighting

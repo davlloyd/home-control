@@ -1,0 +1,7 @@
+platform: command_line
+switches:
+  surveillance_mode:
+    command_on: !secret switch_on
+    command_off: !secret switch_off
+    command_state: !secret switch_status
+    friendly_name: Surveillance Home Mode

@@ -1,0 +1,17 @@
+- name: gmail
+  platform: smtp
+  server: smtp.gmail.com
+  port: 587
+  timeout: 15
+  sender: !secret gmail_sender
+  encryption: starttls
+  username: !secret gmail_username
+  password: !secret gmail_password
+  recipient:
+    - !secret gmail_recipient
+    - !secret gmail_recipient_2
+  sender_name: My Home Assistant
+- name: sms
+  platform: clickatell
+  api_key: !secret clickatell_apikey
+  recipient: !secret clickatell_recipient

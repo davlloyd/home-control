@@ -97,5 +97,27 @@
   - service: homeassistant.turn_on
     entity_id: switch.downstairs_lights_switch
 
+- id: '8'
+  alias: Switch Surveillance to Away Mode
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - from: home
+    platform: state
+    entity_id: group.family
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.surveillance_mode
 
+- id: '9'
+  alias: Switch Surveillance to Home Mode
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - to: home
+    platform: state
+    entity_id: group.family
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.surveillance_mode
 
