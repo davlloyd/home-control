@@ -73,6 +73,8 @@ zwave:
   device_config:
     light.study_light_level:
       polling_intensity: 1
+    switch.study_light_level:
+      polling_intensity: 1
 
 nest:
   client_id: !secret nest_id
