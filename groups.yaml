@@ -50,11 +50,13 @@ cameras:
       - switch.surveillance_mode
 
 powercontrol:
-   name: Power Control
-   view: no
-   entities:
-     - switch.lizard_lights_switch
-     - switch.downstairs_lights_switch
+    name: Power Control
+    view: no
+    entities:
+      - switch.lizard_lights_switch
+      - switch.downstairs_lights_switch
+      - light.study_light_level
+      #- switch.study_light_switch     
 
 lizardswitch:
     name: Lizard Heating Power
@@ -65,6 +67,19 @@ lizardswitch:
       - sensor.lizard_lights_power
       - sensor.lizard_lights_voltage
       - switch.lizard_lights_switch
+
+studylight:
+    name: Study Light
+    view: no
+    entities:
+      - sensor.study_light_current
+      - sensor.study_light_energy
+      - sensor.study_light_heat
+      #- sensor.study_light_interval
+      - sensor.study_light_power
+      - sensor.study_light_voltage
+      - light.study_light_level
+      - switch.study_light_switch
 
 downstairsswitch:
     name: Downstairs Power
@@ -106,6 +121,7 @@ poweruse:
     entities:
       - group.downstairsswitch
       - group.lizardswitch
+      - group.studylight
 
 climate:
     name: Climate
@@ -150,6 +166,7 @@ sensors:
       - zwave.entrance_sensor
       - zwave.lizard_lights
       - zwave.downstairs_lights
+      - zwave.study_light
       - zwave.zwave_stick
 
 automations:

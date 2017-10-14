@@ -26,7 +26,7 @@ parser.add_argument('-a', '--account', action='store', dest='account',
 parser.add_argument('-p', '--password', action='store', dest='password',
                     help="User account password")
 parser.add_argument('-m', '--mode', action='store', dest='mode',
-                    help="Operational mode (home/away)")
+                    help="Operational mode (home/away/status)")
 
 
 def login():
