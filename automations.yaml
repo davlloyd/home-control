@@ -29,6 +29,9 @@
   - above: '0'
     entity_id: sensor.entrance_sensor_burglar
     platform: numeric_state
+  - above: '0'
+    entity_id: sensor.lounge_sensor_burglar
+    platform: numeric_state
   condition:
     condition: and
     conditions:
@@ -36,10 +39,18 @@
       entity_id: group.family
       state: not_home
   action:
-  - data:
+  - service: notify.sms1
+    data:
       message: Movement detected at house with no one home
       title: Home Burglar Alarm
-    service: notify.sms
+  - service: notify.sms2
+    data:
+      message: Movement detected at house with no one home
+      title: Home Burglar Alarm
+  - service: notify.sms3
+    data:
+      message: Movement detected at house with no one home
+      title: Home Burglar Alarm
 
 - id: '4'
   alias: CO Detection
@@ -53,11 +64,19 @@
     entity_id: sensor.hallway_nest_protect_co_status
     platform: state
   action:
-  - data:
+  - service: notify.sms1
+    data:
       message: High levels of CO detected, please check Nest service fro details
       subject: Home CO Levels Detected
-    service: notify.sms
-
+  - service: notify.sms2
+    data:
+      message: High levels of CO detected, please check Nest service fro details
+      subject: Home CO Levels Detected
+  - service: notify.sms3
+    data:
+      message: High levels of CO detected, please check Nest service fro details
+      subject: Home CO Levels Detected
+    
 - id: '5'
   alias: Smoke Detection
   initial_state: true
@@ -70,10 +89,18 @@
     entity_id: sensor.hallway_nest_protect_smoke_status
     platform: state
   action:
-  - data:
+  - service: notify.sms1
+    data:
       message: High levels of smoke detected, please check Nest service fro details
       subject: Home smoke alarm triggered
-    service: notify.sms
+  - service: notify.sms2
+    data:
+      message: High levels of smoke detected, please check Nest service fro details
+      subject: Home smoke alarm triggered
+  - service: notify.sms3
+    data:
+      message: High levels of smoke detected, please check Nest service fro details
+      subject: Home smoke alarm triggered
 
 - id: '6'
   alias: Turn off downstairs light
@@ -121,3 +148,52 @@
   - service: homeassistant.turn_on
     entity_id: switch.surveillance_mode
 
+- id: '10'
+  alias: CO Not Detected
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - to: Ok
+    entity_id: sensor.dining_room_nest_protect_co_status
+    platform: state
+  - to: Ok
+    entity_id: sensor.hallway_nest_protect_co_status
+    platform: state
+  action:
+  - service: notify.sms1
+    data:
+      message: CO Levels return to normal level
+      subject: Home CO Levels OK
+  - service: notify.sms2
+    data:
+      message: CO Levels return to normal level
+      subject: Home CO Levels OK
+  - service: notify.sms3
+    data:
+      message: CO Levels return to normal level
+      subject: Home CO Levels OK
+    
+- id: '11'
+  alias: Smoke Not Detected
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - to: Ok
+    entity_id: sensor.dining_room_nest_protect_smoke_status
+    platform: state
+  - to: Ok
+    entity_id: sensor.hallway_nest_protect_smoke_status
+    platform: state
+  action:
+  - service: notify.sms1
+    data:
+      message: Smoke levels have returned to normal
+      subject: Home smoke levels ok
+  - service: notify.sms2
+    data:
+      message: Smoke levels have returned to normal
+      subject: Home smoke levels ok
+  - service: notify.sms3
+    data:
+      message: Smoke levels have returned to normal
+      subject: Home smoke levels ok

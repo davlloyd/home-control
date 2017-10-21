@@ -11,7 +11,18 @@
     - !secret gmail_recipient
     - !secret gmail_recipient_2
   sender_name: My Home Assistant
-- name: sms
+- name: sms1
   platform: clickatell
   api_key: !secret clickatell_apikey
   recipient: !secret clickatell_recipient
+- name: sms2
+  platform: telstra
+  consumer_key: !secret telstra_key
+  consumer_secret: !secret telstra_secret
+  phone_number: !secret notify_phone_1
+- name: sms3
+  platform: telstra
+  consumer_key: !secret telstra_key
+  consumer_secret: !secret telstra_secret
+  phone_number: !secret notify_phone_2
+  

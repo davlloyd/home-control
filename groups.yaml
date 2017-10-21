@@ -4,34 +4,42 @@ default_view:
     entities:
       - group.time
       - group.family
-      - group.climate
+      - group.climateoutside
+      - group.climateinside
       - group.powercontrol
 
-monitors:
-    name: Monitors
+Surveillance:
+    name: Surveillance
     view: yes
     icon: mdi:cctv
     entities:
-      - group.cameras
-      - group.alarms
+      - switch.surveillance_mode
+      - camera.front_entrance
+
+Alarms:
+    name: Alarms
+    view: yes
+    icon: mdi:alarm-bell
+    entities:
+      - group.alarmentrance
+      - group.alarmlounge
       - group.detectors
 
-time:
-    name: Time
-    view: no
-    entities:
-      - sun.sun
-      - sensor.time
-      - sensor.entrance_sensor_luminance
-
-alarms:
-    name: House Alarms
+alarmentrance:
+    name: Entrance Alarms
     view: no
     entities:
       - sensor.entrance_sensor_burglar
       - sensor.entrance_sensor_alarm_level
       - sensor.entrance_sensor_alarm_type
-      - binary_sensor.entrance_sensor_sensor
+
+alarmlounge:
+    name: Lounge Alarms
+    view: no
+    entities:
+      - sensor.lounge_sensor_burglar
+      - sensor.lounge_sensor_alarm_level
+      - sensor.lounge_sensor_alarm_type
 
 detectors:
     name: House Detectors
@@ -41,13 +49,6 @@ detectors:
       - sensor.dining_room_nest_protect_co_status
       - sensor.hallway_nest_protect_smoke_status
       - sensor.hallway_nest_protect_co_status
-
-cameras:
-    name: Cameras
-    view: no
-    entities:
-      - camera.front_entrance
-      - switch.surveillance_mode
 
 powercontrol:
     name: Power Control
@@ -123,8 +124,15 @@ poweruse:
       - group.lizardswitch
       - group.studylight
 
-climate:
-    name: Climate
+time:
+    name: Time
+    view: no
+    entities:
+      - sun.sun
+      - sensor.time
+
+climateoutside:
+    name: Weather
     view: no
     icon: mdi:weather-sunny
     entities:
@@ -132,9 +140,34 @@ climate:
       - sensor.yr_temperature
       - sensor.yr_wind_direction
       - sensor.yr_wind_speed
+
+climatehome:
+    name: Home Atmosphere
+    view: yes
+    icon: mdi:thermometer
+    entities:
+      - group.climateentrance
+      - group.climatelounge
+
+climateentrance:
+    name: Entrance State
+    view: no
+    icon: mdi:weather-sunny
+    entities:
       - sensor.entrance_sensor_temperature
       - sensor.entrance_sensor_relative_humidity
       - sensor.entrance_sensor_ultraviolet
+      - sensor.entrance_sensor_luminance
+
+climatelounge:
+    name: Lounge State
+    view: no
+    icon: mdi:weather-sunny
+    entities:
+      - sensor.lounge_sensor_temperature
+      - sensor.lounge_sensor_relative_humidity
+      - sensor.lounge_sensor_ultraviolet
+      - sensor.lounge_sensor_luminance
 
 family:
     name: The Lloyds
@@ -149,7 +182,7 @@ family:
 music:
      name: Music Players
      view: yes
-     icon: mdi:radio
+     icon: mdi:music
      entities:
        - media_player.lounge_music
        - media_player.office_music_
@@ -162,8 +195,10 @@ sensors:
     entities:
       - binary_sensor.dining_room_nest_protect_online
       - binary_sensor.hallway_nest_protect_online
+      - binary_sensor.lounge_sensor_sensor
       - binary_sensor.entrance_sensor_sensor
       - zwave.entrance_sensor
+      - zwave.lounge_sensor
       - zwave.lizard_lights
       - zwave.downstairs_lights
       - zwave.study_light
@@ -177,6 +212,7 @@ automations:
 #      - group.maintenanceauto
       - group.lizardauto
       - group.alertsauto
+      - group.securityauto
       - group.lightsauto
 
 #maintenanceauto:
@@ -197,9 +233,16 @@ alertsauto:
     name: House Alerts
     view: no
     entities:
-      - automation.motion_detected_empty_house
       - automation.co_detection
+      - automation.co_not_detected
       - automation.smoke_detection
+      - automation.smoke_not_detected
+
+securityauto:
+    name: House Security
+    view: no
+    entities:
+      - automation.motion_detected_empty_house
       - automation.switch_surveillance_to_away_mode
       - automation.switch_surveillance_to_home_mode
 
