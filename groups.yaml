@@ -8,6 +8,38 @@ default_view:
       - group.climateinside
       - group.powercontrol
 
+loungemedia:
+     name: Lounge Media
+     view: yes
+     icon: mdi:theater
+     entities:
+       - media_player.lounge_tv
+       - media_player.kodi_lounge
+       - media_player.lounge_avr
+       - media_player.lounge_music
+       - remote.lounge
+       - media_player.atvlounge
+       - remote.atvlounge
+
+downstairsmedia:
+     name: Downstairs Media
+     view: yes
+     icon: mdi:television-classic
+     entities:
+      - media_player.atv_downstairs
+      - media_player.mibox3
+      - remote.downstairs
+      - remote.atv_downstairs
+
+music:
+     name: Music Players
+     view: yes
+     icon: mdi:music
+     entities:
+       - media_player.lounge_music
+       - media_player.office_music_
+       - media_player.backroom_music
+
 Surveillance:
     name: Surveillance
     view: yes
@@ -92,29 +124,6 @@ downstairsswitch:
       - sensor.downstairs_lights_energy
       - switch.downstairs_lights_switch
 
-loungemedia:
-     name: Lounge Media
-     view: yes
-     icon: mdi:theater
-     entities:
-       - media_player.lounge_tv
-       - media_player.kodi_lounge
-       - media_player.lounge_avr
-       - media_player.lounge_music
-       - remote.lounge
-       - media_player.atvlounge
-       - remote.atvlounge
-
-downstairsmedia:
-     name: Downstairs Media
-     view: yes
-     icon: mdi:video
-     entities:
-      - media_player.atv_downstairs
-      - media_player.mibox3
-      - remote.downstairs
-      - remote.atv_downstairs
-
 poweruse:
     name: Power Monitors
     view: yes
@@ -178,15 +187,6 @@ family:
       - device_tracker.davidsiphone
       - device_tracker.joeysiphone
       - device_tracker.ellanisiphone
-
-music:
-     name: Music Players
-     view: yes
-     icon: mdi:music
-     entities:
-       - media_player.lounge_music
-       - media_player.office_music_
-       - media_player.backroom_music
 
 sensors:
     name: Sensors
