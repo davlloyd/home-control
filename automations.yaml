@@ -107,8 +107,9 @@
   initial_state: true
   hide_entity: false
   trigger:
-  - at: '21:30'
-    platform: time
+  - event: sunrise
+    offset: '-1:00:00'
+    platform: sun
   action:
   - service: homeassistant.turn_off
     entity_id: switch.downstairs_lights_switch

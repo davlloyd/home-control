@@ -8,9 +8,35 @@ default_view:
       - group.climateinside
       - group.powercontrol
 
+lounge:
+     name: Living Room
+     view: yes
+     icon: mdi:theater
+     entities:
+      - sensor.lounge_sensor_burglar
+      - group.loungemedia
+      - group.climatelounge
+      - group.dinninglight
+
+downstairs:
+     name: Downstairs
+     view: yes
+     icon: mdi:hanger
+     entities:
+       - group.downstairsmedia
+       - group.downstairsswitch
+
+study:
+     name: Study
+     view: yes
+     icon: mdi:desktop-mac
+     entities:
+       - group.studylight
+       - media_player.office_music_
+
 loungemedia:
      name: Lounge Media
-     view: yes
+     view: no
      icon: mdi:theater
      entities:
        - media_player.lounge_tv
@@ -23,7 +49,7 @@ loungemedia:
 
 downstairsmedia:
      name: Downstairs Media
-     view: yes
+     view: no
      icon: mdi:television-classic
      entities:
       - media_player.atv_downstairs
@@ -47,6 +73,7 @@ Surveillance:
     entities:
       - switch.surveillance_mode
       - camera.front_entrance
+      - camera.garage
 
 Alarms:
     name: Alarms
@@ -90,6 +117,8 @@ powercontrol:
       - switch.downstairs_lights_switch
       - light.study_light_level
       #- switch.study_light_switch     
+      - light.dinning_light_level
+      #- switch.dinning_light_switch
 
 lizardswitch:
     name: Lizard Heating Power
@@ -100,6 +129,19 @@ lizardswitch:
       - sensor.lizard_lights_power
       - sensor.lizard_lights_voltage
       - switch.lizard_lights_switch
+
+dinninglight:
+    name: Dinning Light
+    view: no
+    entities:
+      - sensor.dinning_light_current
+      - sensor.dinning_light_energy
+      - sensor.dinnig_light_heat
+      #- sensor.dinning_light_interval
+      - sensor.dinning_light_power
+      - sensor.dinning_light_voltage
+      - light.dinning_light_level
+      - switch.dinning_light_switch
 
 studylight:
     name: Study Light
@@ -132,6 +174,7 @@ poweruse:
       - group.downstairsswitch
       - group.lizardswitch
       - group.studylight
+      - group.dinninglight
 
 time:
     name: Time
@@ -199,9 +242,11 @@ sensors:
       - binary_sensor.entrance_sensor_sensor
       - zwave.entrance_sensor
       - zwave.lounge_sensor
+      - zwave.dinning_light
       - zwave.lizard_lights
       - zwave.downstairs_lights
       - zwave.study_light
+      - zwave.entrance_repeater
       - zwave.zwave_stick
 
 automations:
